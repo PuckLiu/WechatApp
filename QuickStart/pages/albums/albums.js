@@ -30,6 +30,7 @@ Page({
       { "pic": "https://img.alicdn.com/imgextra/i1/828286880/TB21H4lbgnD8KJjy1XdXXaZsVXa_!!828286880.jpg" },
       { "pic": "https://img.alicdn.com/imgextra/i4/828286880/TB2WHhdbnnI8KJjSszgXXc8ApXa_!!828286880.jpg" },
       { "pic": "https://img.alicdn.com/imgextra/i3/828286880/TB2RU5lub5YBuNjSspoXXbeNFXa_!!828286880.jpg" }
+      
     ],
     albumleft:[],
     albumright:[]

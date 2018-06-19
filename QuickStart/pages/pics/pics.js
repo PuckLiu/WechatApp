@@ -60,7 +60,7 @@ Page({
         });
       }
     })
-
+    //插入一段测试注释
     // var that = this;
     // wx.playBackgroundAudio({
     //   dataUrl: app.globalData.g_music_url,
