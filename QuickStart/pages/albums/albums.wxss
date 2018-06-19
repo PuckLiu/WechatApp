@@ -1,0 +1,49 @@
+/* pages/albums/albums.wxss */
+.nav_title {
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+  color: #000000;
+  margin: auto;
+}
+.album_top {
+  display: flex;
+  width: 100%;
+  height: 50px;
+  align-items: center;
+  align-content: center;
+}
+.album_item {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 48vw;/*vw屏幕宽度的百分比*/
+  margin-bottom: 10px;
+  background: #eaeaea;
+}
+.item_album_left {
+  width: 40vw;
+  margin-left: 7%;
+  margin-right: 3%;
+  display: inline-block;
+  /* vertical-align: top; */
+  /* flex: left; */
+}
+.item_album_right {
+  width: 40vw;
+  margin-left: 3%;
+  margin-right: 7%;
+  display: inline-block;
+  /* vertical-align: top; */
+  /* flex: right; */
+}
+.album_title {
+  display: flex;
+  text-align: center;
+  justify-content: center; 
+  align-items: center;
+  align-self: center;
+  font-size: 14px;
+  /* color: red; */
+}
