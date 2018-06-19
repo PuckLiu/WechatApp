@@ -11,6 +11,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    albumUrl:"",
     images: [],
     imagesurls: [],
     btnplayimage: "../../resources/pause.png",
@@ -47,6 +48,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    let albumUrl = options.albumUrl;
+    console.log("option.url:"+ albumUrl);
     var that = this;
     wx.getSystemInfo({
       success: (res) => {
@@ -55,30 +58,14 @@ Page({
         let imgWidth = ww * 0.48;
         let scrollH = wh;
         this.setData({
+          albumUrl: albumUrl,
           scrollH: scrollH,
           imgWidth: imgWidth
         });
       }
     })
-    //插入一段测试注释
-    // var that = this;
-    // wx.playBackgroundAudio({
-    //   dataUrl: app.globalData.g_music_url,
-    //   title: app.globalData.g_music_title,
-    //   coverImgUrl: app.globalData.g_music_cover,
-    //   success: function (res) {
-    //     console.log("music success");
-    //     // console.log(res);
-    //     app.globalData.g_isPalyingMusic = true;
-    //     // console.log(app.globalData.g_isPalyingMusic);
-    //   },
-    //   fail: function (res) {
-    //     console.log("music failed");
-    //     console.log(res);
-    //     app.globalData.g_isPalyingMusic = false;
-    //   }
-    // })
-    this.checkNetWork();
+    this.onStartFetchImages();
+    
     
   },
 
@@ -130,8 +117,26 @@ Page({
   onShareAppMessage: function () {
 
   },
+  onStartFetchImages: function() {
+    if (!this.data.albumUrl) {
+      return;
+    } 
+    var that = this;
+    wx.request({
+      url: that.data.albumUrl,
+      success: function(res) {
+        var imagelist = res.data.imagelist;
+        console.log("success");
+        that.checkNetWork(imagelist);
+      },
+      fail: function(res) {
+        console.log("failed");
+      }
+    })
+  }
+  ,
   /*网络环境判断*/
-  checkNetWork: function() {    
+  checkNetWork: function(images) {    
     let that = this;
     wx.getNetworkType({
       success: function(res) {
@@ -147,20 +152,20 @@ Page({
             success: function (res) {
               if (res.confirm) {
                 console.log('用户点击确定')
-                that.startLoadImages();
+                that.loadImages(images);
               } else if (res.cancel) {
                 console.log('用户点击取消')
               }
             }
           })  
         } else {
-          that.startLoadImages();
+          that.loadImages(images);
         }
       },
     })
   },
   /*开始加载图片*/
-  startLoadImages: function() {
+  /*startLoadImages: function() {
     if (app.globalData.g_images) {
       this.loadImages(app.globalData.g_images);
       this.changeNavTitle();
@@ -177,7 +182,7 @@ Page({
         this.startAudio();
       }
     }
-  },
+  },*/
   startAudio: function() {
     wx.playBackgroundAudio({
       dataUrl: app.globalData.g_music_url,
@@ -241,10 +246,13 @@ Page({
 
   },
   loadImages: function (pimages) {
+    
     if (pimages == null || pimages.length <= 0) {
       return;
     }
-    
+    this.changeNavTitle();
+    this.startAudio();
+
     let images = pimages;
     let baseId = "img-" + (new Date());
     let urls = [];

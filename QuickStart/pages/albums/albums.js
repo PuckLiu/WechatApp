@@ -1,4 +1,6 @@
 // pages/albums/albums.js
+const app = getApp();
+
 Page({
 
   /**
@@ -10,27 +12,6 @@ Page({
     imgH:0,
     albumTitleH:0,
     albums: [
-      { "id":"a1", "pic": "https://img.alicdn.com/imgextra/i4/828286880/TB2T637mndYBeNkSmLyXXXfnVXa_!!828286880.jpg" },
-      { "pic": "https://img.alicdn.com/imgextra/i4/828286880/TB2EunXa8gXBuNjt_hNXXaEiFXa_!!828286880.jpg" },
-      { "pic": "https://img.alicdn.com/imgextra/i2/828286880/TB2Eg5njuuSBuNjy1XcXXcYjFXa_!!828286880.jpg" },
-      { "pic": "https://img.alicdn.com/imgextra/i3/828286880/TB2NX0lbhPI8KJjSspfXXcCFXXa_!!828286880.jpg" },
-      { "pic": "https://img.alicdn.com/imgextra/i4/828286880/TB2ncpcbmYH8KJjSspdXXcRgVXa_!!828286880.jpg" },
-      { "pic": "https://img.alicdn.com/imgextra/i1/828286880/TB2JPJibbYI8KJjy0FaXXbAiVXa_!!828286880.jpg" },
-      { "pic": "https://img.alicdn.com/imgextra/i1/828286880/TB2wnFnbf6H8KJjSspmXXb2WXXa_!!828286880.jpg" },
-      { "pic": "https://img.alicdn.com/imgextra/i3/828286880/TB2hPVibbYI8KJjy0FaXXbAiVXa_!!828286880.jpg" },
-      { "pic": "https://img.alicdn.com/imgextra/i4/828286880/TB2PTJjbnnI8KJjy0FfXXcdoVXa_!!828286880.jpg" },
-      { "pic": "https://img.alicdn.com/imgextra/i3/828286880/TB2uK4vbmfD8KJjSszhXXbIJFXa_!!828286880.jpg" },
-      { "pic": "https://img.alicdn.com/imgextra/i3/828286880/TB2e6SIXUo09KJjSZFDXXb9npXa_!!828286880.jpg" },
-      { "pic": "https://img.alicdn.com/imgextra/i1/828286880/TB2hIVcbmYH8KJjSspdXXcRgVXa_!!828286880.jpg" },
-      { "pic": "https://img.alicdn.com/imgextra/i3/828286880/TB2lZXibcjI8KJjSsppXXXbyVXa_!!828286880.jpg" },
-      { "pic": "https://img.alicdn.com/imgextra/i2/828286880/TB2kkplbh6I8KJjy0FgXXXXzVXa_!!828286880.jpg" },
-      { "pic": "https://img.alicdn.com/imgextra/i3/828286880/TB2pG8dbnnI8KJjSszgXXc8ApXa_!!828286880.jpg" },
-      { "pic": "https://img.alicdn.com/imgextra/i1/828286880/TB2mZhYeZyYBuNkSnfoXXcWgVXa_!!828286880.jpg" },
-      { "pic": "https://img.alicdn.com/imgextra/i3/828286880/TB2s1cGX2fM8KJjSZPfXXbklXXa_!!828286880.jpg" },
-      { "pic": "https://img.alicdn.com/imgextra/i1/828286880/TB21H4lbgnD8KJjy1XdXXaZsVXa_!!828286880.jpg" },
-      { "pic": "https://img.alicdn.com/imgextra/i4/828286880/TB2WHhdbnnI8KJjSszgXXc8ApXa_!!828286880.jpg" },
-      { "pic": "https://img.alicdn.com/imgextra/i3/828286880/TB2RU5lub5YBuNjSspoXXbeNFXa_!!828286880.jpg" }
-      
     ],
     albumleft:[],
     albumright:[]
@@ -45,33 +26,19 @@ Page({
         let ww = res.windowWidth;
         let wh = res.windowHeight;
         let imgWidth = ww * 0.40;
-        let albumTitleH = ww * 0.08;
+        let imgHeight = imgWidth *1.0;
+        let albumTitleH = ww * 0.12;
         let scrollH = wh;
         this.setData({
           scrollH: scrollH,
           imgWidth: imgWidth,
-          imgH:imgWidth,
+          imgH:imgHeight,
           albumTitleH:albumTitleH
         });
       }
     })
 
-    let left = this.data.albumleft;
-    let right = this.data.albumright;
-    for (let i = 0;i < this.data.albums.length;i++) {
-      let img = this.data.albums[i];
-      img.id = "album"+i;
-      img.title = "album_"+i;
-      if (i % 2 == 0) {
-        left.push(img);
-      } else {
-        right.push(img);
-      }
-    }
-    this.setData ({
-      albumleft: left,
-      albumright: right
-    })
+    this.onStartLoadAlbums();
   },
 
   /**
@@ -122,17 +89,49 @@ Page({
   onShareAppMessage: function () {
   
   },
+  
+  onStartLoadAlbums: function() {
+    if (app.globalData.g_albums) {
+      console.log("already get albums data");
+      this.handleAlbumsData(app.globalData.g_albums);
+    } else {
+      app.albumFetchCallback = res => {
+        console.log("callback get albums data");
+        this.handleAlbumsData(app.globalData.g_albums);
+      }
+    }
+
+  },
+
+  handleAlbumsData: function(albums) {
+    let left = this.data.albumleft;
+    let right = this.data.albumright;
+    for (let i = 0; i < albums.length; i++) {
+      let img = albums[i];
+      img.id = i;
+      if (i % 2 == 0) {
+        left.push(img);
+      } else {
+        right.push(img);
+      }
+    }
+    this.setData({
+      albums: albums,
+      albumleft: left,
+      albumright: right
+    })
+  },
 
   albumCorverLoad: function (e) {
     let imageW = e.detail.width;
     let imageH = e.detail.height;
-    console.log(e.currentTarget.id);
-    console.log(e);
   },
   albumClicked: function (e) {
-    console.log(e);
+    let title = e.currentTarget.dataset.name;
+    let iindex = e.currentTarget.dataset.index;
+    var albumurl = e.currentTarget.dataset.albumurl;
     wx.navigateTo({
-      url: '../pics/pics',
+      url: '../pics/pics?albumUrl=' + albumurl,
     })
   }
 })

@@ -1,22 +1,24 @@
 <!--pages/albums/albums.wxml-->
 <view class='album_top'>
-  <text class='nav_title'>两列居中显示</text>
+  <text class='nav_title'></text>
 </view>
 <scroll-view scroll-y="true" style="height:{{scrollH}}px">
   <view style='width:100%;'>
     <view class='item_album_left'>
       <view class='album_item' wx:for="{{albumleft}}" wx:key="pic">
-        <image src="{{item.pic}}" style='width:100%;height:{{imgH}}px;' mode='scaleToFill' bindload='albumCorverLoad' bindtap='albumClicked'></image>
-        <view style='display:flex;width:100%;height:{{albumTitleH}}px;align-items:center;align-content:center;'>
-          <text class='album_title' style='width:100%;height:100%'>{{item.id}}</text>
+        <image src="{{item.image}}" style='width:100%;height:{{imgH}}px;border-radius:5px' mode='aspectFill' bindload='albumCorverLoad' bindtap='albumClicked' data-index="{{item.id}}" data-name='{{item.title}}' data-albumurl='{{item.albumUrl}}'></image>
+        <view style='display:flex;width:100%;height:{{albumTitleH}}px;align-items:center;align-content:center;flex-direction:column;'>
+          <text class='album_title'>{{item.title}}</text>
+          <text class='album_count'>61张</text>
         </view>
       </view>
     </view>
     <view class='item_album_right'>
       <view class='album_item' wx:for="{{albumright}}" wx:key="pic">
-        <image src="{{item.pic}}" style='width:100%;height:{{imgH}}px;' mode='scaleToFill' bindload='albumCorverLoad' bindtap='albumClicked'></image>
-        <view style='display:flex;width:100%;height:{{albumTitleH}}px;align-items:center;align-content:center;'>
-          <text class='album_title' style='width:100%;height:100%'>{{item.title}}</text>
+        <image src="{{item.image}}" style='width:100%;height:{{imgH}}px;border-radius:5px' mode='aspectFill' bindload='albumCorverLoad' bindtap='albumClicked' data-index="{{item.id}}" data-name='{{item.title}}' data-albumurl='{{item.albumUrl}}'></image>
+        <view style='display:flex;width:100%;height:{{albumTitleH}}px;align-items:center;align-content:center;flex-direction:column;'>
+          <text class='album_title'>{{item.title}}</text>
+          <text class='album_count'>61张</text>
         </view>
       </view>
     </view>

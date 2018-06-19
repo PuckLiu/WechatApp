@@ -48,7 +48,9 @@ App({
         }
       }
     })
-    this.pullLaunchConfig('https://yhsmallapp.oss-cn-shanghai.aliyuncs.com/joy_test2.json');
+    //相册链接https://yhsmallapp.oss-cn-shanghai.aliyuncs.com/album_json
+    // this.pullLaunchConfig('https://yhsmallapp.oss-cn-shanghai.aliyuncs.com/joy_test2.json');
+    this.pullLaunchConfig('https://yhsmallapp.oss-cn-shanghai.aliyuncs.com/album_json');
   },
   onShow: function() {
     console.log("app onShow");
@@ -66,6 +68,7 @@ App({
     g_music_cover: null;
     g_music_title;
     g_images:[];
+    g_albums:[];
   },
   
   pullLaunchConfig: function (purl) {
@@ -74,6 +77,7 @@ App({
       url: purl,
       success: function (res) {
         var imgurls = res.data.imagelist;
+        var albums = res.data.albums;
         var musicurl = res.data.musicurl;
         var musiccover = res.data.musiccover;
         var musictitle = res.data.musictitle;
@@ -82,10 +86,14 @@ App({
         that.globalData.g_music_cover = musiccover;
         that.globalData.g_music_title = musictitle;
         that.globalData.g_images = imgurls;
+        that.globalData.g_albums = albums;
         that.globalData.g_nav_title = navtitle;
-        if (that.imagesReadyCallback) {
-          that.imagesReadyCallback(res)
+        if (that.albumFetchCallback) {
+          that.albumFetchCallback(res);
         }
+        // if (that.imagesReadyCallback) {
+        //   that.imagesReadyCallback(res)
+        // }
         // console.log(res);
       },
       fail: function (err) {

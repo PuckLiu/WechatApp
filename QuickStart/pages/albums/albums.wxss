@@ -10,7 +10,7 @@
 .album_top {
   display: flex;
   width: 100%;
-  height: 50px;
+  height: 10px;
   align-items: center;
   align-content: center;
 }
@@ -18,9 +18,9 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 48vw;/*vw屏幕宽度的百分比*/
+  height: 52vw;/*vw屏幕宽度的百分比*/
   margin-bottom: 10px;
-  background: #eaeaea;
+  
 }
 .item_album_left {
   width: 40vw;
@@ -39,11 +39,28 @@
   /* flex: right; */
 }
 .album_title {
-  display: flex;
-  text-align: center;
-  justify-content: center; 
+   display: flex;  
+   margin-left: 3px;
+   width:100%;
+   height:50%;
+   /* text-align: left;
+   justify-content: left;  */
+   align-items: center;
+   align-self: center;
+   font-size: 12px;
+   font-weight: 500;/*bold 700, normal 400,*/
+  /* background: beige;     */
+   /* color: red;  */
+}
+.album_count {
+  display: flex; 
+  margin-left: 3px;
+  width:100%;
+  height:50%;
   align-items: center;
-  align-self: center;
-  font-size: 14px;
-  /* color: red; */
+   align-self: center;
+  font-size: 10px;
+  /* background: aliceblue;   */
+  /* text-align: left; */
+
 }
