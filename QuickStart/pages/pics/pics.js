@@ -20,7 +20,8 @@ Page({
     imgWidth: 0,
     loadingCount: 0,
     col1: [],
-    col2: []
+    col2: [],
+    extra: ""
   },
   //开始播放
   audioPlay: function () {
@@ -80,21 +81,23 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.pausePlay(false);
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
+    this.pausePlay(true);
+    console.log("pics pages onhide");
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+    this.pausePlay(true);
+    console.log("pics pages onUnload");
   },
 
   /**
@@ -126,8 +129,12 @@ Page({
       url: that.data.albumUrl,
       success: function(res) {
         var imagelist = res.data.imagelist;
-        console.log("success");
+        var extraurl = res.data.extra;
+        console.log("success " + imagelist.length);
         that.checkNetWork(imagelist);
+        that.setData({
+          extra: extraurl
+        });
       },
       fail: function(res) {
         console.log("failed");
@@ -184,6 +191,7 @@ Page({
     }
   },*/
   startAudio: function() {
+    
     wx.playBackgroundAudio({
       dataUrl: app.globalData.g_music_url,
       success: function (obj) {
@@ -197,7 +205,7 @@ Page({
     })
   },
   onImageUnLoad: function(e) {
-
+      console.log(e);
   },
   onImageLoad: function (e) {
     let imageId = e.currentTarget.id;
@@ -206,7 +214,7 @@ Page({
     let imgWidth = this.data.imgWidth;  //图片设置的宽度
     let scale = imgWidth / oImgW;        //比例计算
     let imgHeight = oImgH * scale;      //自适应高度
-
+    // console.log(e);
     let images = this.data.images;
     let imageObj = null;
     for (let i = 0; i < images.length; i++) {
@@ -246,7 +254,7 @@ Page({
 
   },
   loadImages: function (pimages) {
-    
+    // console.log(pimages);
     if (pimages == null || pimages.length <= 0) {
       return;
     }
@@ -254,7 +262,7 @@ Page({
     this.startAudio();
 
     let images = pimages;
-    let baseId = "img-" + (new Date());
+    let baseId = "img-";
     let urls = [];
     for (let i = 0; i < images.length; i++) {
       images[i].id = baseId + "-" + i;

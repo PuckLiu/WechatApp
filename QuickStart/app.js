@@ -50,7 +50,7 @@ App({
     })
     //相册链接https://yhsmallapp.oss-cn-shanghai.aliyuncs.com/album_json
     // this.pullLaunchConfig('https://yhsmallapp.oss-cn-shanghai.aliyuncs.com/joy_test2.json');
-    this.pullLaunchConfig('https://yhsmallapp.oss-cn-shanghai.aliyuncs.com/album_json');
+    this.pullLaunchConfig('https://yhsmallapp.oss-cn-shanghai.aliyuncs.com/config_file/album_json');
   },
   onShow: function() {
     console.log("app onShow");

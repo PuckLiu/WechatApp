@@ -1,20 +1,22 @@
 {
     "navtitle": "噗哈哈",
-    "musicurl": "http://dl.stream.qqmusic.qq.com/C4000038SNyf2kg9zE.m4a?vkey=CA1B8F4549150DB2368F90E49F9EA66C6EC66BA3F409D4469FDCFD04ABA474D507BA1FB4AA4817CB1D53E77E842BE16511CAD8F56DDD35EE&guid=7610694688&uin=294429341&fromtag=66",
+    "musicurl": "https://yhsmallapp.oss-cn-shanghai.aliyuncs.com/config_file/just_the_way_you_are.mp3",
     "musiccover": "",
     "musictitle": "Just the way you are",
     "albums": [
         {
             "album_id": "1",
-            "image": "https://yhsmallapp.oss-cn-shanghai.aliyuncs.com/507W180224B02-146.jpg",
+            "image": "https://yhsmallapp.oss-cn-shanghai.aliyuncs.com/507W180224B02-146.jpg?x-oss-process=image/resize,m_lfit,h_500,w_500",
             "title": "精修",
-            "albumUrl": "https://yhsmallapp.oss-cn-shanghai.aliyuncs.com/joy_test2.json"
+            "albumUrl": "https://yhsmallapp.oss-cn-shanghai.aliyuncs.com/config_file/marry_psd.json",
+            "count":61
         },
         {
             "album_id": "2",
-            "image": "https://yhsmallapp.oss-cn-shanghai.aliyuncs.com/507W180224B02-012.jpg",
+            "image": "https://yhsmallapp.oss-cn-shanghai.aliyuncs.com/507W180224B02-012.jpg?x-oss-process=image/resize,m_lfit,h_500,w_500",
             "title": "原片",
-            "albumUrl": "https://yhsmallapp.oss-cn-shanghai.aliyuncs.com/joy_test2.json"
+            "albumUrl": "https://yhsmallapp.oss-cn-shanghai.aliyuncs.com/config_file/marrypics.json",
+            "count":149
         }
     ]
 }

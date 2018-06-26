@@ -1,17 +1,17 @@
 <!--pages/pics/pics.js.wxml-->
 <view style="display:none">
-  <image wx:for="{{images}}" wx:key="id" id="{{item.id}}" src="{{item.pic}}" bindload="onImageLoad" binderror='onImageUnLoad'></image>
+  <image wx:for="{{images}}" wx:key="id" id="{{item.id}}" src="{{item.pic}}{{extra}}" bindload="onImageLoad" binderror='onImageUnLoad'></image>
 </view>
 <scroll-view scroll-y="true" style="height:{{scrollH}}px;margin-top:0px">
   <view style="width:100%">
     <view class="img_item">
       <view wx:for="{{col1}}" wx:key="pic">
-        <image src="{{item.pic}}" data-src="{{item.pic}}" style="width:100%;height:{{item.height}}px" bindtap='previewimage'></image>
+        <image src="{{item.pic}}{{extra}}" data-src="{{item.pic}}" style="width:100%;height:{{item.height}}px;border-radius:0px" bindtap='previewimage'></image>
       </view>
     </view>
     <view class="img_item">
       <view wx:for="{{col2}}" wx:key="pic">
-        <image src="{{item.pic}}" data-src="{{item.pic}}" style="width:100%;height:{{item.height}}px" bindtap='previewimage'></image>
+        <image src="{{item.pic}}{{extra}}" data-src="{{item.pic}}" style="width:100%;height:{{item.height}}px;border-radius:0px" bindtap='previewimage'></image>
       </view>
     </view>
   </view>

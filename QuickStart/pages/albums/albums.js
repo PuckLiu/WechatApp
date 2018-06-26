@@ -59,7 +59,7 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-  
+    console.log("albums pages onhide");
   },
 
   /**
@@ -94,9 +94,11 @@ Page({
     if (app.globalData.g_albums) {
       console.log("already get albums data");
       this.handleAlbumsData(app.globalData.g_albums);
+      console.log(app.globalData.g_albums);
     } else {
       app.albumFetchCallback = res => {
         console.log("callback get albums data");
+        console.log(app.globalData.g_albums);
         this.handleAlbumsData(app.globalData.g_albums);
       }
     }

@@ -9,7 +9,7 @@
         <image src="{{item.image}}" style='width:100%;height:{{imgH}}px;border-radius:5px' mode='aspectFill' bindload='albumCorverLoad' bindtap='albumClicked' data-index="{{item.id}}" data-name='{{item.title}}' data-albumurl='{{item.albumUrl}}'></image>
         <view style='display:flex;width:100%;height:{{albumTitleH}}px;align-items:center;align-content:center;flex-direction:column;'>
           <text class='album_title'>{{item.title}}</text>
-          <text class='album_count'>61张</text>
+          <text class='album_count'>{{item.count}}张</text>
         </view>
       </view>
     </view>
@@ -18,7 +18,7 @@
         <image src="{{item.image}}" style='width:100%;height:{{imgH}}px;border-radius:5px' mode='aspectFill' bindload='albumCorverLoad' bindtap='albumClicked' data-index="{{item.id}}" data-name='{{item.title}}' data-albumurl='{{item.albumUrl}}'></image>
         <view style='display:flex;width:100%;height:{{albumTitleH}}px;align-items:center;align-content:center;flex-direction:column;'>
           <text class='album_title'>{{item.title}}</text>
-          <text class='album_count'>61张</text>
+          <text class='album_count'>{{item.count}}张</text>
         </view>
       </view>
     </view>
